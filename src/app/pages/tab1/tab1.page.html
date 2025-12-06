@@ -1,0 +1,71 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="fw-bold text-secondary">
+      Explorar
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="startCamera()" class="rounded-circle bg-white shadow-sm" style="width: 40px; height: 40px; margin-right: 10px;">
+        <ion-icon name="camera" slot="icon-only" color="medium"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <div class="px-3 pt-2">
+    <ion-segment mode="ios" value="candies" class="rounded-pill bg-white shadow-sm">
+      <ion-segment-button value="candies" content-id="candies">
+        <ion-label class="fw-semibold">Dulces</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="drinks" content-id="drinks">
+        <ion-label class="fw-semibold">Bebidas</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="meats" content-id="meats">
+        <ion-label class="fw-semibold">Carnes</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <ion-segment-view class="mt-3">
+    <ion-segment-content id="candies">
+      <ng-container [ngTemplateOutlet]="couponTemplate" [ngTemplateOutletContext]="{category: 'candies'}"></ng-container>
+    </ion-segment-content>
+    <ion-segment-content id="drinks">
+      <ng-container [ngTemplateOutlet]="couponTemplate" [ngTemplateOutletContext]="{category: 'drinks'}"></ng-container>
+    </ion-segment-content>
+    <ion-segment-content id="meats">
+      <ng-container [ngTemplateOutlet]="couponTemplate" [ngTemplateOutletContext]="{category: 'meats'}"></ng-container>
+    </ion-segment-content>
+  </ion-segment-view>
+
+  <ng-template #couponTemplate let-categoria="category">
+    <ion-grid class="px-3">
+      <ion-row>
+        @for(coupon of coupons | filterCouponCategory: categoria; track coupon.idProduct){
+          <ion-col size="6" class="mb-2">
+            <ion-card class="bone-card border-0 m-0 h-100 animate__animated animate__fadeIn" (click)="changeActive(coupon)">
+              
+              <div class="position-relative">
+                <ion-img [src]="coupon.img" style="border-radius: 20px 20px 0 0; overflow: hidden; height: 120px; object-fit: cover;"></ion-img>
+                
+                @if(coupon.active) {
+                  <span class="position-absolute top-0 end-0 badge bg-success m-2 rounded-pill shadow-sm">Activo</span>
+                }
+              </div>
+
+              <ion-card-header class="ion-text-center pt-2 pb-3">
+                <ion-card-subtitle class="text-muted small text-uppercase fw-light" style="letter-spacing: 1px;">
+                  {{ coupon.name }}
+                </ion-card-subtitle>
+                <ion-card-title class="display-6 fw-bold text-dark mt-1">
+                  {{ coupon.discount }}%
+                </ion-card-title>
+              </ion-card-header>
+            </ion-card>
+          </ion-col>
+        }
+      </ion-row>
+    </ion-grid>
+  </ng-template>
+</ion-content>

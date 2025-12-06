@@ -1,0 +1,71 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import '@ionic/angular/css/palettes/dark.system.css';
+
+:root {
+  --ion-color-bone: #F9F7F2; /* Color hueso claro */
+  --ion-color-bone-contrast: #5c5a56; /* Gris cálido para texto */
+  --ion-color-bone-shade: #e6e2d8; /* Hueso un poco más oscuro */
+}
+
+ion-content {
+  --background: var(--ion-color-bone);
+  --color: var(--ion-color-bone-contrast);
+}
+
+ion-toolbar {
+  --background: var(--ion-color-bone);
+  --color: var(--ion-color-bone-contrast);
+  --border-width: 0 !important; /* Quita la línea divisoria de Ionic */
+}
+
+ion-segment {
+  background: transparent;
+  padding: 10px;
+}
+
+ion-segment-button {
+  --indicator-color: #D3Cfc0; /* Acento hueso oscuro */
+  --color: #999;
+  --color-checked: var(--ion-color-bone-contrast);
+}
+
+.bone-card {
+  background-color: #ffffff !important; /* Tarjetas blancas para contraste sutil */
+  border-radius: 20px !important; /* Bordes muy redondeados (Bootstrap rounded-4) */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important; /* Sombra suave y difusa */
+}

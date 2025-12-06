@@ -1,0 +1,41 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="fw-bold text-secondary">
+      Tu Código
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="d-flex flex-column align-items-center justify-content-center h-100 px-4">
+    
+    <div class="bg-white p-4 rounded-5 shadow-sm text-center border border-light" style="max-width: 350px; width: 100%;">
+      
+      <div class="mb-3">
+        <ion-icon name="scan-circle-outline" class="text-secondary" style="font-size: 3rem;"></ion-icon>
+      </div>
+
+      <h5 class="text-secondary fw-light mb-4">Escanea para canjear</h5>
+
+      @if(QRCode){
+        <div class="qr-container p-2 rounded-3 bg-light d-inline-block">
+          <qrcode
+            [qrdata]="QRCode"
+            [width]="220"
+            [errorCorrectionLevel]="'M'"
+            [elementType]="'svg'"
+            [colorDark]="'#4a4a4a'" 
+            [colorLight]="'#ffffff'">
+          </qrcode>
+        </div>
+        <p class="mt-3 text-muted small">Muestra este código al cajero</p>
+      }@else{
+        <div class="py-5">
+          <ion-icon name="ticket-outline" class="text-muted mb-2" style="font-size: 40px; opacity: 0.3"></ion-icon>
+          <p class="text-muted">No hay cupones activos seleccionados.</p>
+        </div>
+      }
+    </div>
+
+  </div>
+</ion-content>
